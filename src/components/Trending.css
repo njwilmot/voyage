@@ -1,0 +1,100 @@
+.trending-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 0px;
+    position: relative;
+  }
+  
+  .trending-container h2 {
+    text-align: left;
+    color: #ffffff;
+    font-size: large;
+    margin-bottom: 40px;
+  }
+  
+  .scroll-buttons {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  
+  .scroll-buttons button {
+    pointer-events: all;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .scroll-buttons button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #00f;
+  }
+  
+  .trending-job-list {
+    display: flex;
+    overflow-x: hidden;
+    padding-bottom: 10px;
+    gap: 15px;
+  }
+  
+  .trending-job-card {
+    flex: 0 0 auto;
+    width: 250px;
+    height: 220px;
+    border: 1px solid #ccc;
+    border-radius: 7px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #fff;
+    overflow: hidden;
+    transition: transform 0.3s ease; 
+}
+
+
+  .trending-job-list {
+      display: flex;
+      overflow-x: auto; 
+      padding-bottom: 10px;
+      gap: 17px; 
+  }
+
+  
+  .job-image {
+    height: 120px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .job-image img {
+    object-fit: cover;
+    
+  }
+  
+  .job-info {
+    padding: 10px;
+  }
+  
+  .job-info h3 {
+    margin: 0 0 10px;
+    color: #121212;
+  }
+  
+  .job-info p {
+    margin: 5px 0;
+    color: #333;
+  }
+  

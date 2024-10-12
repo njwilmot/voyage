@@ -1,0 +1,81 @@
+.job-map-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.search-bar {
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar input, .search-bar select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-bar input {
+    width: 40%;
+}
+
+.map-and-listings {
+    display: flex;
+    flex-grow: 1;
+    color: #333;
+}
+
+.job-listing-panel {
+    width: 30%;
+    background: #f8f8f8;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.job-item {
+    padding: 15px;
+    background: #fff;
+    margin-bottom: 10px;
+    border: 1px solid #f8f8f8;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.job-item:hover {
+    background-color: #f8f8f8;
+}s
+
+.job-item h4 {
+    margin: 0;
+    color: #333;
+}
+.job-listing-panel {
+    max-height: 989px;  /* Set the max height to whatever suits your layout */
+    overflow-y: auto;   /* Enable vertical scrolling when content exceeds max-height */
+    padding: 10px;      /* Optional: Add some padding to the container */
+    border: 1px solid #ddd;  /* Optional: Add a border to make it visually distinct */
+    box-sizing: border-box;
+  }
+  
+  .job-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-item h4 {
+    margin: 0 0 5px;
+  }
+  
+  .job-item p {
+    margin: 0;
+  }
+  

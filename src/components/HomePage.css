@@ -1,0 +1,17 @@
+.home-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px 20px; /* Remove or reduce padding here */
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+  font-size: x-large;
+  margin-bottom: 10px; /* Reduce space below the title */
+}
+
+.trending-jobs {
+  margin-top: 0px; /* Remove extra space above the trending jobs */
+  padding-top: 0px; /* Remove padding if any */
+}

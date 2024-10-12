@@ -1,0 +1,72 @@
+.header {
+  background-color: #ffffff; 
+  color: white;
+  padding: 10px 20px; 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.header img {
+  height: 50px; 
+  margin-right: 20px; 
+}
+
+.container {
+  display: flex;
+  height: 90vh; 
+}
+
+.mapView, .listView {
+  flex: 1;
+  overflow: hidden; 
+}
+
+.listView {
+  background-color: #000000; 
+  padding: 20px; 
+  overflow-y: auto;
+}
+
+.mapView {
+  overflow: hidden; 
+}
+
+body {
+  position: relative;
+  background-color: #121212; /* Fallback background color */
+  color: #e0e0e0; /* Text color */
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Full viewport height */
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/home.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.1; /* Adjust this value for desired transparency */
+  z-index: -7; /* Ensure the image stays behind the content */
+}
+
+.app-container {
+  position: relative; /* Ensures it stacks above the background image */
+  z-index: 1;
+  background-color: transparent; /* Allow the background image to show through */
+  color: #ffffff; /* Light grey text for readability */
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent body from scrolling */
+}

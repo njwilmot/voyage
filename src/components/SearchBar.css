@@ -1,0 +1,36 @@
+.search-bar-container {
+    display: flex;
+    justify-content: center;  
+    margin-top: 90px;
+    margin-bottom: 110px;
+    margin-left: auto; 
+    margin-right: auto;  
+    max-width: 500px;  
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    padding: 12px; 
+  }
+  
+  .search-bar-container input, .search-bar-container button {
+    margin: 0 7px;  
+    border: none;
+    outline: none;
+    flex-grow: 1;  
+  }
+  
+  .search-bar-container input[type="text"] {
+    flex-grow: 2;  
+    font-size: 12px;
+  }
+  
+  .search-bar-container button {
+    background-color: #800020;
+    color: white;
+    cursor: pointer;
+    max-width: 100px;
+    padding: 5px;
+    border-radius: 9px;  
+    font-size: 12px;
+  }
+  

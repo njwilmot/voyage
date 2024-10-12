@@ -1,0 +1,18 @@
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.search-bar input {
+    width: 60%;
+    padding: 10px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #f90;
+    border: none;
+    color: white;
+    cursor: pointer;
+}

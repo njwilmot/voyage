@@ -1,0 +1,32 @@
+/* Header.css */
+.header {
+    background-color: #800020; /* Dark blue, adjust the color to match your theme */
+    color: white;
+    padding: 20px 30px; /* Adjust padding to better fit your design */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.navigation {
+    display: flex;
+    gap: 17px; /* Spacing between navigation links */
+}
+
+.navigation a {
+    color: #121212;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: small;
+}
+

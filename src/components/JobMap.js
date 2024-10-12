@@ -4,7 +4,8 @@ import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import './JobMap.css';
 import { useJobData } from './useJobData';
 import axios from 'axios';
- // Import the centralized job data
+import { Autocomplete } from '@react-google-maps/api';
+
 
 const mapContainerStyle = {
   width: '100%',
@@ -16,7 +17,7 @@ const mapOptions = {
 };
 
 function JobMap() {
-  const jobs = useJobData(); // Get the centralized job data
+  const jobs = useJobData(); 
   const locationHook = useLocation();
   const queryParams = new URLSearchParams(locationHook.search);
   const searchTermFromQuery = queryParams.get('search');

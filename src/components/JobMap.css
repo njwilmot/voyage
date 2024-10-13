@@ -37,9 +37,9 @@
 
 /* Job listing panel - adjusted for width and scrolling */
 .job-listing-panel {
-    width: 20%;
+    width: 18%;
     background-color: #ffffff00;
-    padding: 20px;
+    padding: 10px;
     overflow-y: auto;
     border-right: 1px solid #ddd;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -47,10 +47,10 @@
 
 /* Individual job items */
 .job-item {
-    padding: 15px;
+    padding: 10px;
     background: #444;
-    margin-bottom: 12px;
-    border-radius: 4px;
+    margin-bottom: 6px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -66,8 +66,8 @@
 }
 
 .job-item p {
-    margin: 4px 0 0;
-    font-size: 12px;
+    margin: px 0 0;
+    font-size: 9px;
     color: #aaa;
 }
 
@@ -75,7 +75,7 @@
 .job-listing-panel h3 {
     color: #fff;
     font-size: 18px;
-    margin-bottom: 15px;
+    margin-top: 1px;
 }
 
 .job-listing-panel .job-item h4, 
@@ -110,7 +110,7 @@
 /* Styling for job details text */
 .job-details-panel h3 {
     font-size: 20px;
-    color: #0073b1;
+    color: #800020;
     margin-bottom: 10px;
     font-size: 12px;
 }
@@ -123,7 +123,7 @@
 
 /* Buttons styling for job actions */
 .apply-button {
-    background-color: #0073b1;
+    background-color: #800020;
     color: white;
     padding: 6px 12px; /* Reduced padding for a smaller button */
     border: none;
@@ -135,8 +135,8 @@
 }
 
 .save-button {
-    background-color: #f3f3f3;
-    color: #555;
+    background-color: #800020;
+    color: #ffffff;
     padding: 6px 12px; /* Reduced padding for a smaller button */
     border: none;
     cursor: pointer;
@@ -150,7 +150,7 @@
 }
 
 .save-button:hover {
-    background-color: #ddd;
+    background-color: #005a8d;
 }
 
 /* Flex layout for buttons */

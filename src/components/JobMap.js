@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 import './JobMap.css';
 import { useJobData } from './useJobData';
 import axios from 'axios';
@@ -15,7 +15,7 @@ const mapOptions = {
 };
 
 function JobMap() {
-  const jobs = useJobData(); 
+  const jobs = useJobData();
   const locationHook = useLocation();
   const queryParams = new URLSearchParams(locationHook.search);
   const searchTermFromQuery = queryParams.get('search');
@@ -23,13 +23,26 @@ function JobMap() {
 
   const [selectedJob, setSelectedJob] = useState(null);
   const [mapCenter, setMapCenter] = useState({ lat: 33.4484, lng: -112.0740 });
+  const [mapInstance, setMapInstance] = useState(null); // Store GoogleMap instance
   const [searchTerm, setSearchTerm] = useState(searchTermFromQuery || "");
   const [jobType, setJobType] = useState("");
   const [location, setLocation] = useState(locationFromQuery || "");
   const [experienceLevel, setExperienceLevel] = useState("");
-  const [redDotIcon, setRedDotIcon] = useState(null);
+  const [blueCircleIcon, setBlueCircleIcon] = useState(null);
 
-
+  // Set the blue circle icon once the Google Maps object is available
+  useEffect(() => {
+    if (window.google) {
+      setBlueCircleIcon({
+        path: window.google.maps.SymbolPath.CIRCLE,
+        scale: 8, // Adjust this size for your needs
+        fillColor: '#4285F4', // Blue color
+        fillOpacity: 1,
+        strokeWeight: 1,
+        strokeColor: '#FFFFFF', // White border
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (searchTermFromQuery || locationFromQuery) {
@@ -70,9 +83,14 @@ function JobMap() {
     setExperienceLevel(e.target.value);
   };
 
-  // Ensure only one marker's InfoWindow is open at a time
+  // Update the map center and zoom when a marker is clicked
   const handleMarkerClick = (job) => {
-    setSelectedJob(job);  // Set the selected job, which will cause only one InfoWindow to appear
+    setSelectedJob(job);
+    setMapCenter(job.position); // Update map center
+
+    if (mapInstance) {
+      mapInstance.setZoom(14); // Set the zoom level to 14 (or any zoom level you prefer)
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -81,6 +99,10 @@ function JobMap() {
       if (firstMatchingJob) {
         setMapCenter(firstMatchingJob.position);
         setSelectedJob(firstMatchingJob);
+
+        if (mapInstance) {
+          mapInstance.setZoom(14); // Set the zoom level when searching
+        }
       } else {
         geocodeLocation(location).then((position) => {
           if (position) setMapCenter(position);
@@ -148,7 +170,7 @@ function JobMap() {
               <div
                 key={index}
                 className="job-item"
-                onClick={() => setSelectedJob(job)}
+                onClick={() => handleMarkerClick(job)}
               >
                 <h4>{job.title}</h4>
                 <p>{job.company}</p>
@@ -169,31 +191,18 @@ function JobMap() {
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
               center={mapCenter}
-              zoom={13}
+              zoom={13} // Default zoom level
               options={mapOptions}
+              onLoad={map => setMapInstance(map)} // Save map instance when loaded
             >
               {filteredJobs.map((job, index) => (
                 <Marker
                   key={index}
                   position={job.position}
-                  icon={redDotIcon}  // Small red dot marker
-                  onClick={() => handleMarkerClick(job)}
+                  icon={blueCircleIcon}  // Small blue circle marker
+                  onClick={() => handleMarkerClick(job)}  // Click on marker centers the map
                 />
               ))}
-
-{selectedJob && (
-            <InfoWindow
-              position={selectedJob.position}
-              onCloseClick={() => setSelectedJob(null)}
-            >
-              <div>
-                <strong>{selectedJob.title}</strong>
-                <p>{selectedJob.company}</p>
-                <p>{selectedJob.location}</p>
-                <p>{selectedJob.price}</p>
-              </div>
-            </InfoWindow>
-          )}
             </GoogleMap>
           </div>
 
@@ -205,7 +214,6 @@ function JobMap() {
                 <p><strong>Company:</strong> {selectedJob.company}</p>
                 <p><strong>Location:</strong> {selectedJob.location}</p>
                 <p><strong>Salary:</strong> {selectedJob.salary}</p>
-                <p>{selectedJob.description}</p>
                 <div className="job-buttons">
                   <button className="apply-button">Apply</button>
                   <button className="save-button">Save</button>

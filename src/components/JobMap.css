@@ -15,77 +15,147 @@
 }
 
 .search-bar input, .search-bar select {
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 9px;
 }
 
 .search-bar input {
     width: 40%;
 }
 
+
+/* Layout for map and listings - full height and split */
 .map-and-listings {
     display: flex;
     flex-grow: 1;
     color: #333;
+    height: calc(100vh - 60px);
+    overflow: hidden;
 }
 
+/* Job listing panel - adjusted for width and scrolling */
 .job-listing-panel {
-    width: 70%;
-    background: #ffffff00;
+    width: 20%;
+    background-color: #ffffff00;
     padding: 20px;
-    overflow-y: scroll;
-    
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Individual job items */
 .job-item {
     padding: 15px;
-    background: #fff;
-    margin-bottom: 10px;
-    border: 1px solid #f8f8f8;
+    background: #444;
+    margin-bottom: 12px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .job-item:hover {
-    background-color: #fffeffca;
-}s
+    background-color: #333;
+}
 
 .job-item h4 {
     margin: 0;
-    color: #333;
+    font-size: 10px;
+    color: #fff;
+}
+
+.job-item p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* Scrollable job listings */
+.job-listing-panel h3 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.job-listing-panel .job-item h4, 
+.job-listing-panel .job-item p {
+    color: #ffffff;
+}
+
+/* Map and job details panel - split flex layout */
+.map-and-details {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    overflow: hidden;
+}
+
+/* Google Map container - covers the top half */
+.google-map {
+    flex-grow: 1;
+    height: 67%;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Job details panel - bottom half */
+.job-details-panel {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto;
     
 }
-.job-listing-panel {
-    max-height: 989px;  
-    overflow-y: auto;   
-    padding: 10px;      
-    border: 1px solid #ddd;  
-    box-sizing: border-box;
-  }
-  .job-listing-panel h3 {
-    color: white; 
-    font-size: 14px;
-}
-.job-listing-panel .job-item h4,
-.job-listing-panel .job-item p {
-    color: #ffffff; 
-}
-  .job-item {
-    padding: 10px;
+
+/* Styling for job details text */
+.job-details-panel h3 {
+    font-size: 20px;
+    color: #0073b1;
     margin-bottom: 10px;
-    background-color: #80002000;
+    font-size: 12px;
+}
+
+.job-details-panel p {
+    color: #555;
+    margin-bottom: 8px;
+    font-size: 10px;
+}
+
+/* Buttons styling for job actions */
+.apply-button {
+    background-color: #0073b1;
+    color: white;
+    padding: 6px 12px; /* Reduced padding for a smaller button */
+    border: none;
+    cursor: pointer;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-  }
-  
-  .job-item h4 {
-    margin: 0 0 5px;
-  }
-  
-  .job-item p {
-    margin: 0;
-  }
-  
+    margin-right: 10px;
+    font-size: 10px; /* Reduced font size */
+    transition: background-color 0.3s ease;
+}
+
+.save-button {
+    background-color: #f3f3f3;
+    color: #555;
+    padding: 6px 12px; /* Reduced padding for a smaller button */
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 10px; /* Reduced font size */
+    transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #005a8d;
+}
+
+.save-button:hover {
+    background-color: #ddd;
+}
+
+/* Flex layout for buttons */
+.job-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}

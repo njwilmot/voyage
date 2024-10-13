@@ -4,12 +4,10 @@ import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import './JobMap.css';
 import { useJobData } from './useJobData';
 import axios from 'axios';
-import { Autocomplete } from '@react-google-maps/api';
-
 
 const mapContainerStyle = {
   width: '100%',
-  height: '100vh',
+  height: '100%',
 };
 
 const mapOptions = {
@@ -29,6 +27,9 @@ function JobMap() {
   const [jobType, setJobType] = useState("");
   const [location, setLocation] = useState(locationFromQuery || "");
   const [experienceLevel, setExperienceLevel] = useState("");
+  const [redDotIcon, setRedDotIcon] = useState(null);
+
+
 
   useEffect(() => {
     if (searchTermFromQuery || locationFromQuery) {
@@ -69,8 +70,9 @@ function JobMap() {
     setExperienceLevel(e.target.value);
   };
 
+  // Ensure only one marker's InfoWindow is open at a time
   const handleMarkerClick = (job) => {
-    setSelectedJob(job);
+    setSelectedJob(job);  // Set the selected job, which will cause only one InfoWindow to appear
   };
 
   const handleKeyPress = (e) => {
@@ -138,35 +140,7 @@ function JobMap() {
       </div>
 
       <div className="map-and-listings">
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          center={mapCenter}
-          zoom={13}
-          options={mapOptions}
-        >
-          {filteredJobs.map((job, index) => (
-            <Marker
-              key={index}
-              position={job.position}
-              onClick={() => handleMarkerClick(job)}
-            />
-          ))}
-
-          {selectedJob && (
-            <InfoWindow
-              position={selectedJob.position}
-              onCloseClick={() => setSelectedJob(null)}
-            >
-              <div>
-                <strong>{selectedJob.title}</strong>
-                <p>{selectedJob.company}</p>
-                <p>{selectedJob.location}</p>
-                <p>{selectedJob.price}</p>
-              </div>
-            </InfoWindow>
-          )}
-        </GoogleMap>
-
+        {/* Job Listings Panel */}
         <div className="job-listing-panel">
           <h3>Job Listings</h3>
           {filteredJobs.length > 0 ? (
@@ -186,6 +160,61 @@ function JobMap() {
               <h3>No matching jobs found.</h3>
             </div>
           )}
+        </div>
+
+        {/* Map and Job Details Panel */}
+        <div className="map-and-details">
+          {/* Google Map */}
+          <div className="google-map">
+            <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              center={mapCenter}
+              zoom={13}
+              options={mapOptions}
+            >
+              {filteredJobs.map((job, index) => (
+                <Marker
+                  key={index}
+                  position={job.position}
+                  icon={redDotIcon}  // Small red dot marker
+                  onClick={() => handleMarkerClick(job)}
+                />
+              ))}
+
+{selectedJob && (
+            <InfoWindow
+              position={selectedJob.position}
+              onCloseClick={() => setSelectedJob(null)}
+            >
+              <div>
+                <strong>{selectedJob.title}</strong>
+                <p>{selectedJob.company}</p>
+                <p>{selectedJob.location}</p>
+                <p>{selectedJob.price}</p>
+              </div>
+            </InfoWindow>
+          )}
+            </GoogleMap>
+          </div>
+
+          {/* Job Details Panel */}
+          <div className="job-details-panel">
+            {selectedJob ? (
+              <>
+                <h3>{selectedJob.title}</h3>
+                <p><strong>Company:</strong> {selectedJob.company}</p>
+                <p><strong>Location:</strong> {selectedJob.location}</p>
+                <p><strong>Salary:</strong> {selectedJob.salary}</p>
+                <p>{selectedJob.description}</p>
+                <div className="job-buttons">
+                  <button className="apply-button">Apply</button>
+                  <button className="save-button">Save</button>
+                </div>
+              </>
+            ) : (
+              <p>Select a job to see details</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

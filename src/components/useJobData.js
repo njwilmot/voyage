@@ -1,15 +1,80 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'; 
 import axios from 'axios';
 
 export const useJobData = () => {
   const [jobs, setJobs] = useState([]);
+
+  const stateAbbreviations = {
+    "al": "alabama",
+    "ak": "alaska",
+    "az": "arizona",
+    "ar": "arkansas",
+    "ca": "california",
+    "co": "colorado",
+    "ct": "connecticut",
+    "de": "delaware",
+    "fl": "florida",
+    "ga": "georgia",
+    "hi": "hawaii",
+    "id": "idaho",
+    "il": "illinois",
+    "in": "indiana",
+    "ia": "iowa",
+    "ks": "kansas",
+    "ky": "kentucky",
+    "la": "louisiana",
+    "me": "maine",
+    "md": "maryland",
+    "ma": "massachusetts",
+    "mi": "michigan",
+    "mn": "minnesota",
+    "ms": "mississippi",
+    "mo": "missouri",
+    "mt": "montana",
+    "ne": "nebraska",
+    "nv": "nevada",
+    "nh": "new hampshire",
+    "nj": "new jersey",
+    "nm": "new mexico",
+    "ny": "new york",
+    "nc": "north carolina",
+    "nd": "north dakota",
+    "oh": "ohio",
+    "ok": "oklahoma",
+    "or": "oregon",
+    "pa": "pennsylvania",
+    "ri": "rhode island",
+    "sc": "south carolina",
+    "sd": "south dakota",
+    "tn": "tennessee",
+    "tx": "texas",
+    "ut": "utah",
+    "vt": "vermont",
+    "va": "virginia",
+    "wa": "washington",
+    "wv": "west virginia",
+    "wi": "wisconsin",
+    "wy": "wyoming"
+  };
+  
+
+  const capitalizeWords = (str) => {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+  };
+
+  const normalizeLocation = (location) => {
+    const [city, stateAbbreviation] = location.split(', ').map(part => part.trim().toLowerCase());
+    const stateFullName = stateAbbreviations[stateAbbreviation];
+    const normalizedState = stateFullName ? capitalizeWords(stateFullName) : capitalizeWords(stateAbbreviation || '');
+    return `${capitalizeWords(city)}, ${normalizedState}`;
+  };
 
   const fetchCoordinates = async (location) => {
     try {
       const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, {
         params: {
           address: location,
-          key: process.env.REACT_APP_API_KEY, 
+          key: process.env.REACT_APP_API_KEY,
         },
       });
       if (response.data.results.length > 0) {
@@ -52,12 +117,13 @@ export const useJobData = () => {
         { title: "Business Analyst", company: "BizPro", location: "Salt Lake City, UT", price: "$105,000/year", image: "/images/job1.png", position: { lat: 40.7608, lng: -111.8910 } }
       ];
 
-
       const jobsWithCoordinates = await Promise.all(jobData.map(async (job) => {
-        const position = await fetchCoordinates(job.location);
+        const normalizedLocation = normalizeLocation(job.location);
+        const position = await fetchCoordinates(normalizedLocation);
         return {
           ...job,
-          position,  
+          location: normalizedLocation,
+          position,
         };
       }));
 

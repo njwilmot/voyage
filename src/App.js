@@ -12,7 +12,6 @@ import Reviews from './components/Reviews';
 import './App.css';
 
 function App() {
-  console.log("API Key:", process.env.REACT_APP_API_KEY);
   return (
     <LoadScript
       googleMapsApiKey={process.env.REACT_APP_API_KEY}

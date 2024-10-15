@@ -6,7 +6,7 @@
 
 .search-bar {
     padding: 10px;
-    background-color: #ffffff00;
+    background-color: #ffffff;
     border-bottom: 1px solid #ddd;
     display: flex;
     justify-content: left;
@@ -18,7 +18,7 @@
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 9px;
+    font-size: 12px;
 }
 
 .search-bar input {
@@ -26,85 +26,95 @@
 }
 
 
-/* Layout for map and listings - full height and split */
 .map-and-listings {
     display: flex;
     flex-grow: 1;
     color: #333;
     height: calc(100vh - 60px);
     overflow: hidden;
+    padding: 20px;
+    gap: 20px; 
+    border-radius: 16px;
+    background-color: #f9f9f900;
 }
 
-/* Job listing panel - adjusted for width and scrolling */
+
+.map-and-details {
+    display: flex;
+    flex-direction: column;
+    width: 85%; 
+    gap: 20px; 
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+/* Google Map container */
+.google-map {
+    flex-grow: 1;
+    height: 100%; /* Make sure it fills the available height */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Job listing panel */
 .job-listing-panel {
-    width: 18%;
-    background-color: #ffffff00;
-    padding: 10px;
+    width: 50%; 
+    background-color: rgb(255, 255, 255);
+    padding: 15px;
     overflow-y: auto;
-    border-right: 1px solid #ddd;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Individual job items */
-.job-item {
-    padding: 10px;
-    background: #444;
-    margin-bottom: 6px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.job-item:hover {
-    background-color: #333;
-}
-
-.job-item h4 {
-    margin: 0;
-    font-size: 10px;
-    color: #fff;
-}
-
-.job-item p {
-    margin: px 0 0;
-    font-size: 9px;
-    color: #aaa;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
 }
 
 /* Scrollable job listings */
 .job-listing-panel h3 {
-    color: #fff;
+    color: rgb(19, 18, 18);
     font-size: 18px;
     margin-top: 1px;
 }
 
 .job-listing-panel .job-item h4, 
 .job-listing-panel .job-item p {
-    color: #ffffff;
+    color: #040404;
 }
 
-/* Map and job details panel - split flex layout */
-.map-and-details {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    overflow: hidden;
+/* Individual job items */
+.job-item {
+    padding: 90px; 
+    background: rgb(255, 255, 255);
+    margin-bottom: 5px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.096);
 }
 
-/* Google Map container - covers the top half */
-.google-map {
-    flex-grow: 1;
-    height: 67%;
-    border-bottom: 1px solid #ddd;
+.job-item:hover {
+    background-color: rgba(51, 51, 51, 0.27);
 }
 
-/* Job details panel - bottom half */
+.job-item h4 {
+    margin: 0;
+    font-size: 14px;
+    color: rgb(17, 17, 17);
+}
+
+.job-item p {
+    margin: 0;
+    font-size: 12px;
+    color: rgb(10, 10, 10);
+}
+
+/* Job details panel */
 .job-details-panel {
     flex-grow: 1;
     padding: 20px;
     background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-    
 }
 
 /* Styling for job details text */
@@ -112,36 +122,35 @@
     font-size: 20px;
     color: #800020;
     margin-bottom: 10px;
-    font-size: 12px;
 }
 
 .job-details-panel p {
-    color: #555;
+    color: rgb(255, 255, 255);
     margin-bottom: 8px;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 /* Buttons styling for job actions */
 .apply-button {
     background-color: #800020;
     color: white;
-    padding: 6px 12px; /* Reduced padding for a smaller button */
+    padding: 6px 12px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     margin-right: 10px;
-    font-size: 10px; /* Reduced font size */
+    font-size: 12px;
     transition: background-color 0.3s ease;
 }
 
 .save-button {
     background-color: #800020;
     color: #ffffff;
-    padding: 6px 12px; /* Reduced padding for a smaller button */
+    padding: 6px 12px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    font-size: 10px; /* Reduced font size */
+    font-size: 12px;
     transition: background-color 0.3s ease;
 }
 

@@ -10,7 +10,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   const handleSearch = (term, location) => {
-    navigate(`/jobs?search=${encodeURIComponent(term)}&location=${encodeURIComponent(location)}`); // Pass both search term and location
+    navigate(`/jobs?search=${encodeURIComponent(term)}&location=${encodeURIComponent(location)}`); 
   };
 
   return (

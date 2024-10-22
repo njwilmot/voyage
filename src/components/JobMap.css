@@ -2,169 +2,96 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-}
-
-.search-bar {
-    padding: 10px;
+  }
+  
+  .search-bar {
+    padding: 12px;
     background-color: #ffffff;
     border-bottom: 1px solid #ddd;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     gap: 10px;
-}
-
-.search-bar input, .search-bar select {
-    padding: 5px;
+  }
+  
+  .search-bar input {
+    width: 40%;  /* Adjusted to fit two input fields */
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 12px;
-}
-
-.search-bar input {
-    width: 40%;
-}
-
-
-.map-and-listings {
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .search-bar .search-button {
+    padding: 10px 20px;
+    background-color: #0073b1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .search-bar .search-button:hover {
+    background-color: #005a8d;
+  }
+  
+  .map-and-listings {
     display: flex;
     flex-grow: 1;
     color: #333;
     height: calc(100vh - 60px);
     overflow: hidden;
     padding: 20px;
-    gap: 20px; 
-    border-radius: 16px;
-    background-color: #f9f9f900;
-}
-
-
-.map-and-details {
-    display: flex;
-    flex-direction: column;
-    width: 85%; 
-    gap: 20px; 
-    overflow: hidden;
-    margin-right: 20px;
-}
-
-/* Google Map container */
-.google-map {
-    flex-grow: 1;
-    height: 100%; /* Make sure it fills the available height */
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Job listing panel */
-.job-listing-panel {
-    width: 50%; 
-    background-color: rgb(255, 255, 255);
-    padding: 15px;
-    overflow-y: auto;
-    border-radius: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 100%;
-}
-
-/* Scrollable job listings */
-.job-listing-panel h3 {
-    color: rgb(19, 18, 18);
-    font-size: 18px;
-    margin-top: 1px;
-}
-
-.job-listing-panel .job-item h4, 
-.job-listing-panel .job-item p {
-    color: #040404;
-}
-
-/* Individual job items */
-.job-item {
-    padding: 90px; 
-    background: rgb(255, 255, 255);
-    margin-bottom: 5px;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.096);
-}
-
-.job-item:hover {
-    background-color: rgba(51, 51, 51, 0.27);
-}
-
-.job-item h4 {
-    margin: 0;
-    font-size: 14px;
-    color: rgb(17, 17, 17);
-}
-
-.job-item p {
-    margin: 0;
-    font-size: 12px;
-    color: rgb(10, 10, 10);
-}
-
-/* Job details panel */
-.job-details-panel {
-    flex-grow: 1;
-    padding: 20px;
+    gap: 30px;
     background-color: #ffffff;
+  }
+  
+  .google-map {
+    flex-grow: 1;
+    height: 100%;
+    width: 70%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-listing-panel {
+    width: 30%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    overflow-y: auto;
     border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-}
-
-/* Styling for job details text */
-.job-details-panel h3 {
-    font-size: 20px;
-    color: #800020;
-    margin-bottom: 10px;
-}
-
-.job-details-panel p {
-    color: rgb(255, 255, 255);
-    margin-bottom: 8px;
-    font-size: 12px;
-}
-
-/* Buttons styling for job actions */
-.apply-button {
-    background-color: #800020;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-right: 10px;
-    font-size: 12px;
-    transition: background-color 0.3s ease;
-}
-
-.save-button {
-    background-color: #800020;
-    color: #ffffff;
-    padding: 6px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 12px;
-    transition: background-color 0.3s ease;
-}
-
-.apply-button:hover {
-    background-color: #005a8d;
-}
-
-.save-button:hover {
-    background-color: #005a8d;
-}
-
-/* Flex layout for buttons */
-.job-buttons {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
+  }
+  
+  .job-listing-panel h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .job-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;  /* Thin line between job listings */
+  }
+  
+  .job-info h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .job-info p {
+    margin: 2px 0;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .salary-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0073b1;
+  }
+  

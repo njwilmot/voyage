@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { GoogleMap, Marker } from '@react-google-maps/api';
 import './JobMap.css';
 import { useJobData } from './useJobData';
+import axios from 'axios';
 
 const mapContainerStyle = {
   width: '100%',
@@ -20,12 +21,13 @@ function JobMap() {
   const searchTermFromQuery = queryParams.get('search');
   const locationFromQuery = queryParams.get('location');
 
-  const [mapCenter, setMapCenter] = useState({ lat: 33.4484, lng: -112.0740 });
+  const [mapCenter, setMapCenter] = useState({ lat: 33.4484, lng: -112.0740 }); // Default center
   const [mapInstance, setMapInstance] = useState(null);
   const [searchTerm, setSearchTerm] = useState(searchTermFromQuery || "");
   const [locationQuery, setLocationQuery] = useState(locationFromQuery || "");
   const [blueCircleIcon, setBlueCircleIcon] = useState(null);
 
+  // Load blue circle icon for markers
   useEffect(() => {
     if (window.google) {
       setBlueCircleIcon({
@@ -39,6 +41,30 @@ function JobMap() {
     }
   }, []);
 
+  // Fetch coordinates for a location using Google Maps Geocoding API
+  const fetchCoordinatesForLocation = async (location) => {
+    try {
+      const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, {
+        params: {
+          address: location,
+          key: process.env.REACT_APP_API_KEY, // Use your Google API key here
+        },
+      });
+
+      if (response.data.results.length > 0) {
+        const { lat, lng } = response.data.results[0].geometry.location;
+        return { lat, lng };
+      } else {
+        console.error("No results found for location.");
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching coordinates:', error);
+      return null;
+    }
+  };
+
+  // Handle filtering and setting map center
   useEffect(() => {
     if (searchTerm || locationQuery) {
       const filteredJobs = jobs.filter(job =>
@@ -48,7 +74,18 @@ function JobMap() {
       );
 
       if (filteredJobs.length > 0) {
+        // If there are jobs that match the search, set the map center to the first one
         setMapCenter(filteredJobs[0].position);
+      } else if (locationQuery) {
+        // If no jobs match, fetch coordinates for the searched location
+        fetchCoordinatesForLocation(locationQuery).then((coordinates) => {
+          if (coordinates) {
+            setMapCenter(coordinates); // Update the map center to the searched location
+            if (mapInstance) {
+              mapInstance.setZoom(13); // Set zoom level for the new location
+            }
+          }
+        });
       }
     }
   }, [searchTerm, locationQuery, jobs]);
@@ -74,6 +111,16 @@ function JobMap() {
         if (mapInstance) {
           mapInstance.setZoom(14);
         }
+      } else if (locationQuery) {
+        // If no jobs match and a location is provided, fetch coordinates for the location
+        fetchCoordinatesForLocation(locationQuery).then((coordinates) => {
+          if (coordinates) {
+            setMapCenter(coordinates);
+            if (mapInstance) {
+              mapInstance.setZoom(13);
+            }
+          }
+        });
       }
     }
   };
@@ -142,4 +189,3 @@ function JobMap() {
 }
 
 export default JobMap;
-//cheese
